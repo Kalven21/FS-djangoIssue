@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}List{% endblock title %}
+
+{% block content %}
+<h1 class="centered">List</h1>
+<div class="container row">
+    <div class="col board-col">
+        <h1>To do</h1>
+        {% for issue in to_do_list %}
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ issue.description }}</h4>
+                    <h5 class="card-subtitle">Assignee: {{ issue.assignee }}</h5>
+                    <p class="card-text">{{ issue.description }}</p>
+                    <form method="POST" action="{% url 'update_status' issue.id %}">
+                        <input type="hidden" id="id_status" name="status" value="2">
+                        {% csrf_token %}
+                        <input type="submit" value="To Do" class="btn btn-warning card-btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col board-col">
+        <h1>In progress</h1>
+        {% for issues in in_prog_list %}
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ issue.description }}</h4>
+                    <h5 class="card-subtitle">Assignee: {{ issue.assignee }}</h5>
+                    <p class="card-text">{{ issue.description }}</p>
+                    <form method="POST" action="{% url 'update_status' issue.id %}">
+                        <input type="hidden" id="id_status" name="status" value="3">
+                        {% csrf_token %}
+                        <input type="submit" value="In Progress" class="btn btn-warning card-btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col board-col">
+        <h1>Done</h1>
+        {% for issues in done_list %}
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ issue.description}}</h4>
+                    <h5 class="card-subtitle">Assignee: {{ issue.assignee }}</h5>
+                    <p class="card-text">{{ issue.description }}</p>
+                    <form method="POST" action="{% url 'update_status' issue.id %}">
+                        <input type="hidden" id="id_status" name="status" value="1">
+                        {% csrf_token %}
+                        <input type="submit" value="Done" class="btn btn-warning card-btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

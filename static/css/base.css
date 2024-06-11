@@ -1,0 +1,13 @@
+h1{
+    color: rgb(199, 5, 5);
+}
+.text20px{
+    font-size: 30px;
+}
+.boldText{
+    font-weight: bold;
+}
+/*Navbar*/
+nav{
+    background-color: rgb(197, 150, 150);
+}
